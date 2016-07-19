@@ -9,8 +9,9 @@ import java.util.List;
  */
 public class ColorUtils {
 
-    private List<ColorName> initColorList() {
-        List<ColorName> colorList = new ArrayList<ColorName>();
+    private static List<ColorName> colorList = new ArrayList<ColorName>();
+
+    {
         colorList.add(new ColorName("AliceBlue", 0xF0, 0xF8, 0xFF));
         colorList.add(new ColorName("AntiqueWhite", 0xFA, 0xEB, 0xD7));
         colorList.add(new ColorName("Aqua", 0x00, 0xFF, 0xFF));
@@ -151,11 +152,35 @@ public class ColorUtils {
         colorList.add(new ColorName("WhiteSmoke", 0xF5, 0xF5, 0xF5));
         colorList.add(new ColorName("Yellow", 0xFF, 0xFF, 0x00));
         colorList.add(new ColorName("YellowGreen", 0x9A, 0xCD, 0x32));
-        return colorList;
     }
 
-    public String getColorNameFromRgb(int r, int g, int b) {
-        List<ColorName> colorList = initColorList();
+    private class ColorName {
+        int r, g, b;
+        String name;
+
+        ColorName(String name, int r, int g, int b) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
+            this.name = name;
+        }
+
+        int computeMSE(int pixR, int pixG, int pixB) {
+            return ((pixR - r) * (pixR - r) + (pixG - g) * (pixG - g) + (pixB - b)
+                    * (pixB - b)) / 3;
+        }
+
+        String getName() {
+            return name;
+        }
+    }
+
+    public static String getColorNameFromColor(Color color) {
+        return getColorNameFromRgb(color.getRed(), color.getGreen(),
+                color.getBlue());
+    }
+
+    private static String getColorNameFromRgb(int r, int g, int b) {
         ColorName closestMatch = null;
         int minMSE = Integer.MAX_VALUE;
         int mse;
@@ -171,62 +196,6 @@ public class ColorUtils {
             return closestMatch.getName();
         } else {
             return "No matched color name.";
-        }
-    }
-
-    /**
-     * Convert hexColor to rgb, then call getColorNameFromRgb(r, g, b)
-     *
-     * @param hexColor
-     * @return
-     */
-    public String getColorNameFromHex(int hexColor) {
-        int r = (hexColor & 0xFF0000) >> 16;
-        int g = (hexColor & 0xFF00) >> 8;
-        int b = (hexColor & 0xFF);
-        return getColorNameFromRgb(r, g, b);
-    }
-
-    public int colorToHex(Color c) {
-        return Integer.decode("0x"
-                + Integer.toHexString(c.getRGB()).substring(2));
-    }
-
-    public String getColorNameFromColor(Color color) {
-        return getColorNameFromRgb(color.getRed(), color.getGreen(),
-                color.getBlue());
-    }
-
-    public class ColorName {
-        public int r, g, b;
-        public String name;
-
-        public ColorName(String name, int r, int g, int b) {
-            this.r = r;
-            this.g = g;
-            this.b = b;
-            this.name = name;
-        }
-
-        public int computeMSE(int pixR, int pixG, int pixB) {
-            return ((pixR - r) * (pixR - r) + (pixG - g) * (pixG - g) + (pixB - b)
-                    * (pixB - b)) / 3;
-        }
-
-        public int getR() {
-            return r;
-        }
-
-        public int getG() {
-            return g;
-        }
-
-        public int getB() {
-            return b;
-        }
-
-        public String getName() {
-            return name;
         }
     }
 }

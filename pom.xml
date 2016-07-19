@@ -6,7 +6,7 @@
 
     <groupId>com.pneizhmak.imageprocessor</groupId>
     <artifactId>image-processor</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
