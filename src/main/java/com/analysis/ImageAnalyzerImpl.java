@@ -1,4 +1,4 @@
-package com.analisys;
+package com.analysis;
 
 import com.util.ColorUtils;
 import org.openimaj.image.ImageUtilities;
@@ -12,7 +12,7 @@ import java.net.URL;
 /**
  * @author Pavel Neizhmak
  */
-public class ImageAnalizerImpl implements IImageAnalizer {
+public class ImageAnalyzerImpl implements IImageAnalyzer {
 
     @Override
     public String getDominantColorByPhoto(URL imageUrl) throws IOException {

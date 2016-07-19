@@ -1,4 +1,4 @@
-package com.analisys;
+package com.analysis;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,7 +6,7 @@ import java.net.URL;
 /**
  * @author Pavel Neizhmak
  */
-interface IImageAnalizer {
+interface IImageAnalyzer {
 
     /**
      * You can use {@see File}, {@see InputStream}, {@see URL} as input param
