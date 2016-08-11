@@ -11,7 +11,7 @@ public class ColorUtils {
 
     private static List<ColorName> colorList = new ArrayList<ColorName>();
 
-    {
+    private static void initColorList() {
         colorList.add(new ColorName("AliceBlue", 0xF0, 0xF8, 0xFF));
         colorList.add(new ColorName("AntiqueWhite", 0xFA, 0xEB, 0xD7));
         colorList.add(new ColorName("Aqua", 0x00, 0xFF, 0xFF));
@@ -154,7 +154,7 @@ public class ColorUtils {
         colorList.add(new ColorName("YellowGreen", 0x9A, 0xCD, 0x32));
     }
 
-    private class ColorName {
+    private static class ColorName {
         int r, g, b;
         String name;
 
@@ -176,6 +176,7 @@ public class ColorUtils {
     }
 
     public static String getColorNameFromColor(Color color) {
+        initColorList();
         return getColorNameFromRgb(color.getRed(), color.getGreen(),
                 color.getBlue());
     }
