@@ -68,11 +68,13 @@ public class ImageAnalyzerImpl implements IImageAnalyzer {
         return dc;
     }
 
-    private int getFacesCount() {
+    @Override
+    public int getFacesCount() {
         return this.metadata.getValues(DETECTED_FACES).length;
     }
 
-    private MBFImage detectFaces(URL imageUrl) throws IOException {
+    @Override
+    public MBFImage detectFaces(URL imageUrl) throws IOException {
         MBFImage image = ImageUtilities.readMBF(imageUrl);
 
         final int imageHeight = image.getHeight();

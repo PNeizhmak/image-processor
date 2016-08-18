@@ -1,5 +1,7 @@
 package com.analysis;
 
+import org.openimaj.image.MBFImage;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -13,6 +15,22 @@ interface IImageAnalyzer {
      *
      * @param imageUrl image
      * @return dominant color name
+     * @throws IOException
      */
     String getDominantColorByPhoto(URL imageUrl) throws IOException;
+
+    /**
+     * Detect faces
+     *
+     * @param imageUrl image
+     * @return {@link MBFImage}
+     * @throws IOException
+     */
+    MBFImage detectFaces(URL imageUrl) throws IOException;
+
+    /**
+     *
+     * @return count of faces
+     */
+    int getFacesCount();
 }
