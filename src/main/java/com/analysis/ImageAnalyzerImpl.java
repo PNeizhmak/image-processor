@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class ImageAnalyzerImpl implements IImageAnalyzer {
 
-    private Metadata metadata = new Metadata();
+    private Metadata metadata;
 
     private static final String IMAGE_HEIGHT = "IMAGE_HEIGHT";
     private static final String IMAGE_WIDTH = "IMAGE_WIDTH";
@@ -80,6 +80,7 @@ public class ImageAnalyzerImpl implements IImageAnalyzer {
         final int imageHeight = image.getHeight();
         final int imageWidth = image.getWidth();
 
+        this.metadata = new Metadata();
         this.metadata.set(Property.externalInteger(IMAGE_HEIGHT), imageHeight);
         this.metadata.set(Property.externalInteger(IMAGE_WIDTH), imageWidth);
         this.metadata.set(Property.externalInteger(IMAGE_SIZE), imageWidth * imageHeight);
